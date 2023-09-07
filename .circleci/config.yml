@@ -10,6 +10,24 @@ jobs:
       - run: npm install
       - run: npm run test
 
+  build-node19:
+    docker:
+      - image: cimg/node:19.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run test
+
+  build-node18:
+    docker:
+      - image: cimg/node:18.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run test
+
   build:
     docker:
       - image: cimg/go:1.19
@@ -578,6 +596,14 @@ workflows:
             branches:
               ignore: master
       - build-node:
+          filters:
+            branches:
+              ignore: master
+      - build-node19:
+          filters:
+            branches:
+              ignore: master
+      - build-node18:
           filters:
             branches:
               ignore: master
