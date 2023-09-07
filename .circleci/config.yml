@@ -7,6 +7,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - run: node -v
       - run: npm install
       - run: npm run test
 
@@ -16,6 +17,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - run: node -v
       - run: npm install
       - run: npm run test
 
@@ -25,6 +27,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - run: node -v
       - run: npm install
       - run: npm run test
 
