@@ -55,6 +55,15 @@ jobs:
       - run: node -v
       - run: npm install
       - run: npm run test
+  build-node10:
+    docker:
+      - image: cimg/node:10.14
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: node -v
+      - run: npm install
+      - run: npm run test
 
   build:
     docker:
@@ -644,6 +653,10 @@ workflows:
             branches:
               ignore: master
       - build-node12:
+          filters:
+            branches:
+              ignore: master
+      - build-node10:
           filters:
             branches:
               ignore: master
