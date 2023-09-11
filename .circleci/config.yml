@@ -44,7 +44,7 @@ jobs:
     steps:
       - checkout
       - run: node -v
-      - run: npm install
+      - run: npm install --unsafe-perm
       - run: npm run test
   build-node12:
     docker:
@@ -53,7 +53,7 @@ jobs:
     steps:
       - checkout
       - run: node -v
-      - run: npm install
+      - run: npm install --unsafe-perm
       - run: npm run test
   build-node10:
     docker:
@@ -62,7 +62,7 @@ jobs:
     steps:
       - checkout
       - run: node -v
-      - run: npm install
+      - run: npm install --unsafe-perm
       - run: npm run test
 
   build:
