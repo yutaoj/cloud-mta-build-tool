@@ -37,6 +37,24 @@ jobs:
       - run: node -v
       - run: npm install
       - run: npm run test
+  build-node15:
+    docker:
+      - image: cimg/node:15.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: node -v
+      - run: npm install --unsafe-perm
+      - run: npm run test
+  build-node14:
+    docker:
+      - image: cimg/node:14.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: node -v
+      - run: npm install --unsafe-perm
+      - run: npm run test
   build-node13:
     docker:
       - image: cimg/node:13.1
@@ -645,6 +663,14 @@ workflows:
             branches:
               ignore: master
       - build-node18:
+          filters:
+            branches:
+              ignore: master
+      - build-node15:
+          filters:
+            branches:
+              ignore: master
+      - build-node14:
           filters:
             branches:
               ignore: master
