@@ -55,7 +55,16 @@ jobs:
       - run: node -v
       - run: npm install --unsafe-perm
       - run: npm run test
-  build-node13:
+  build-node13-14:
+    docker:
+      - image: cimg/node:13.14
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: node -v
+      - run: npm install --unsafe-perm
+      - run: npm run test
+  build-node13-1:
     docker:
       - image: cimg/node:13.1
     working_directory: ~/repo
@@ -683,7 +692,11 @@ workflows:
           filters:
             branches:
               ignore: master
-      - build-node13:
+      - build-node13-14:
+          filters:
+            branches:
+              ignore: master
+      - build-node13-1:
           filters:
             branches:
               ignore: master
