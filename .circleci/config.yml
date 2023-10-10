@@ -37,6 +37,24 @@ jobs:
       - run: node -v
       - run: npm install
       - run: npm run test
+  build-node17:
+    docker:
+      - image: cimg/node:17.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: node -v
+      - run: npm install
+      - run: npm run test
+  build-node16:
+    docker:
+      - image: cimg/node:16.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: node -v
+      - run: npm install
+      - run: npm run test
   build-node15:
     docker:
       - image: cimg/node:15.1
@@ -44,7 +62,7 @@ jobs:
     steps:
       - checkout
       - run: node -v
-      - run: npm install --unsafe-perm
+      - run: npm install
       - run: npm run test
   build-node14:
     docker:
@@ -53,7 +71,7 @@ jobs:
     steps:
       - checkout
       - run: node -v
-      - run: npm install --unsafe-perm
+      - run: npm install
       - run: npm run test
   build-node13-14:
     docker:
@@ -64,36 +82,9 @@ jobs:
       - run: node -v
       - run: npm install --unsafe-perm
       - run: npm run test
-  build-node13-1:
-    docker:
-      - image: cimg/node:13.1
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run: node -v
-      - run: npm install --unsafe-perm
-      - run: npm run test
   build-node12-22:
     docker:
       - image: cimg/node:12.22
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run: node -v
-      - run: npm install --unsafe-perm
-      - run: npm run test
-  build-node12-1:
-    docker:
-      - image: cimg/node:12.1
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run: node -v
-      - run: npm install --unsafe-perm
-      - run: npm run test
-  build-node10:
-    docker:
-      - image: cimg/node:10.14
     working_directory: ~/repo
     steps:
       - checkout
@@ -684,6 +675,14 @@ workflows:
           filters:
             branches:
               ignore: master
+      - build-node17:
+          filters:
+            branches:
+              ignore: master
+      - build-node16:
+          filters:
+            branches:
+              ignore: master
       - build-node15:
           filters:
             branches:
@@ -696,19 +695,7 @@ workflows:
           filters:
             branches:
               ignore: master
-      - build-node13-1:
-          filters:
-            branches:
-              ignore: master
       - build-node12-22:
-          filters:
-            branches:
-              ignore: master
-      - build-node12-1:
-          filters:
-            branches:
-              ignore: master
-      - build-node10:
           filters:
             branches:
               ignore: master
